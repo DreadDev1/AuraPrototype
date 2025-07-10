@@ -8,6 +8,7 @@
 
 class UInputMappingContext;
 class UInputAction;
+struct FInputActionValue;
 class ITracingInterface;
 class UBaseHUDWidget;
 
@@ -28,7 +29,13 @@ private:
 
 	void Interact();
 	UPROPERTY(EditDefaultsOnly, Category = "Aura Prototype|Inputs|Input Actions")
-	TObjectPtr<UInputAction> PrimaryInteractAction;
+	TObjectPtr<UInputAction> InteractAction;
+
+	void Move(const FInputActionValue& InputActionValue);
+	UPROPERTY(EditDefaultsOnly, Category="Aura Prototype|Inputs|Input Actions")
+	TObjectPtr<UInputAction> MoveAction;
+
+	
 
 	void CreateHUDWidget();
 	UPROPERTY(EditDefaultsOnly, Category = "Aura Prototype|Widgets|HUD")
