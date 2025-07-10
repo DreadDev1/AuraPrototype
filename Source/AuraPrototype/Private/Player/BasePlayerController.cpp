@@ -2,3 +2,9 @@
 
 
 #include "AuraPrototype/Public/Player/BasePlayerController.h"
+
+
+void ABasePlayerController::PrimaryInteract()
+{
+	UE_LOG(LogTemp, Log, TEXT("Primary Interact"))
+}
