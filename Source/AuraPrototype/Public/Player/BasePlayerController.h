@@ -3,7 +3,6 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "AuraPrototype/Interaction/TracingInterface.h"
 #include "GameFramework/PlayerController.h"
 #include "BasePlayerController.generated.h"
 
@@ -18,13 +17,15 @@ class AURAPROTOTYPE_API ABasePlayerController : public APlayerController
 public:
 
 protected:
+	virtual void BeginPlay() override;
+	virtual void SetupInputComponent() override;
 
 private:
-	UPROPERTY(EditDefaultsOnly, Category = "Inventory")
+	UPROPERTY(EditDefaultsOnly, Category = "AP_Inputs|Input Mapping Context")
 	TArray<TObjectPtr<UInputMappingContext>> DefaultIMCs;
 
-	void PrimaryInteract();
-	UPROPERTY(EditDefaultsOnly, Category = "Inventory")
+	void Interact();
+	UPROPERTY(EditDefaultsOnly, Category = "AP_Inputs|Input Actions")
 	TObjectPtr<UInputAction> PrimaryInteractAction;
 	
 };
