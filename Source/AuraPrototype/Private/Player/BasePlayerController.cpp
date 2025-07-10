@@ -27,8 +27,7 @@ void ABasePlayerController::SetupInputComponent()
 	
 	EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Started, this, &ABasePlayerController::Interact);
 	EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &ABasePlayerController::Move);
-
-
+	EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &ABasePlayerController::Look);
 }
 
 void ABasePlayerController::Interact()
@@ -50,6 +49,13 @@ void ABasePlayerController::Move(const FInputActionValue& InputActionValue)
 		ControlledPawn->AddMovementInput(ForwardDirection, InputAxisVector.Y);
 		ControlledPawn->AddMovementInput(RightDirection, InputAxisVector.X);
 	}
+}
+
+void ABasePlayerController::Look(const FInputActionValue& InputActionValue)
+{
+	const FVector2D InputAxisVector = InputActionValue.Get<FVector2D>();
+	AddYawInput(InputAxisVector.X);
+	AddPitchInput(InputAxisVector.Y);
 }
 
 void ABasePlayerController::CreateHUDWidget()

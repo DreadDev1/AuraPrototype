@@ -35,6 +35,10 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category="Aura Prototype|Inputs|Input Actions")
 	TObjectPtr<UInputAction> MoveAction;
 
+	void Look(const FInputActionValue& InputActionValue);
+	UPROPERTY(EditDefaultsOnly, Category="Aura Prototype|Inputs|Input Actions")
+	TObjectPtr<UInputAction> LookAction;
+
 	
 
 	void CreateHUDWidget();
