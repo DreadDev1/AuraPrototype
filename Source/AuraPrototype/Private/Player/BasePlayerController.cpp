@@ -1,9 +1,11 @@
 ﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "AuraPrototype/Public/Player/BasePlayerController.h"
+#include "Player/BasePlayerController.h"
+#include "Widgets/HUD/BaseHUDWidget.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+
 
 void ABasePlayerController::BeginPlay()
 {
@@ -14,6 +16,7 @@ void ABasePlayerController::BeginPlay()
 	{
 		for (UInputMappingContext* CurrentContext : DefaultIMCs) { Subsystem->AddMappingContext(CurrentContext, 0); }
 	}
+	CreateHUDWidget();
 }
 
 void ABasePlayerController::SetupInputComponent()
@@ -29,4 +32,14 @@ void ABasePlayerController::SetupInputComponent()
 void ABasePlayerController::Interact()
 {
 	UE_LOG(LogTemp, Log, TEXT("Primary Interact"))
+}
+
+void ABasePlayerController::CreateHUDWidget()
+{
+	if (!IsLocalController()) return;
+	HUDWidget = CreateWidget<UBaseHUDWidget>(this, HUDWidgetClass);
+	if (IsValid(HUDWidget))
+	{
+		HUDWidget->AddToViewport();
+	}
 }

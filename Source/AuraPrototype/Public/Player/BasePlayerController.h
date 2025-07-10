@@ -9,6 +9,8 @@
 class UInputMappingContext;
 class UInputAction;
 class ITracingInterface;
+class UBaseHUDWidget;
+
 
 UCLASS()
 class AURAPROTOTYPE_API ABasePlayerController : public APlayerController
@@ -21,11 +23,18 @@ protected:
 	virtual void SetupInputComponent() override;
 
 private:
-	UPROPERTY(EditDefaultsOnly, Category = "AP_Inputs|Input Mapping Context")
+	UPROPERTY(EditDefaultsOnly, Category = "Aura Prototype|Inputs|Input Mapping Context")
 	TArray<TObjectPtr<UInputMappingContext>> DefaultIMCs;
 
 	void Interact();
-	UPROPERTY(EditDefaultsOnly, Category = "AP_Inputs|Input Actions")
+	UPROPERTY(EditDefaultsOnly, Category = "Aura Prototype|Inputs|Input Actions")
 	TObjectPtr<UInputAction> PrimaryInteractAction;
+
+	void CreateHUDWidget();
+	UPROPERTY(EditDefaultsOnly, Category = "Aura Prototype|Widgets|HUD")
+	TSubclassOf<UBaseHUDWidget> HUDWidgetClass;
+
+	UPROPERTY()
+	TObjectPtr<UBaseHUDWidget> HUDWidget;
 	
 };
