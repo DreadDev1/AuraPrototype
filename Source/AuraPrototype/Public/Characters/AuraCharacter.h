@@ -23,7 +23,7 @@ protected:
 	UPROPERTY(VisibleAnywhere, Category = Camera)
 	class UCameraComponent* FollowCamera;
 	FVector NewLocation = FVector(0.f, 0,74.f);
-	FRotator NewRotation = FRotator(120.0f, 0.0f, 0.0f);
+	FRotator NewRotation = FRotator(-65.0f, 0.0f, 0.0f);
 
 	// Boolean to track if top-down mode is enabled
 	UPROPERTY(BlueprintReadOnly, Category = "Camera")
