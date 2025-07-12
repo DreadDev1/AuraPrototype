@@ -13,8 +13,9 @@ AAuraCharacter::AAuraCharacter()
 	PrimaryActorTick.bCanEverTick = true;
 
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
-	CameraBoom->SetupAttachment(GetMesh());
-	CameraBoom->TargetArmLength = 600.f;
+	CameraBoom->SetupAttachment(RootComponent);
+	CameraBoom->SetRelativeLocation(NewLocation, false);
+	CameraBoom->TargetArmLength = 250.f;
 	CameraBoom->bUsePawnControlRotation = true;
 
 	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
@@ -30,3 +31,30 @@ AAuraCharacter::AAuraCharacter()
 	bUseControllerRotationYaw = false;
 	bUseControllerRotationRoll = false;
 }
+
+void AAuraCharacter::ToggleTopDown()
+{
+	if (!bIsTopDown)
+	{
+		EnableTopDown();
+	}
+	else
+	{
+		DisableTopDown();
+	}
+}
+
+void AAuraCharacter::EnableTopDown()
+{
+	bIsTopDown = true;
+	CameraBoom->TargetArmLength = 600.f;
+	CameraBoom->SetRelativeRotation(NewRotation);
+}
+
+void AAuraCharacter::DisableTopDown()
+{
+	bIsTopDown = false;
+	CameraBoom->TargetArmLength = 250.f;
+	CameraBoom->SetRelativeRotation(FRotator(0.f,0.f,0.f));
+}
+

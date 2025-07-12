@@ -10,6 +10,13 @@ UCLASS(Abstract)
 class AURAPROTOTYPE_API ABaseCharacter : public ACharacter
 {
 	GENERATED_BODY()
+public:
+	ABaseCharacter();
 
+protected:
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Combat")
+	TObjectPtr<USkeletalMeshComponent> Weapon;
 
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	FName WeaponTipSocketName;
 };
